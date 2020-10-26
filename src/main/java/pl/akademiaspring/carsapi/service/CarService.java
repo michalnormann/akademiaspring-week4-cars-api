@@ -1,20 +1,16 @@
 package pl.akademiaspring.carsapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.akademiaspring.carsapi.model.Car;
 import pl.akademiaspring.carsapi.repository.CarRepo;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
 public class CarService {
 
-    private List<Car> carList;
     private CarRepo carRepo;
 
     @Autowired
@@ -23,22 +19,6 @@ public class CarService {
     }
 
     public CarService() {
-        this.carList = new ArrayList<>();
-        carList.add(new Car("Fiat","Punto","silver"));
-        carList.add(new Car("Volksvagen","Golf","black"));
-        carList.add(new Car("Ford","Focus","silver"));
-        carList.add(new Car("Fiat","Punto","silver"));
-        carList.add(new Car("Volksvagen","Golf","black"));
-        carList.add(new Car("Ford","Focus","silver"));
-        carList.add(new Car("Fiat","Punto","silver"));
-        carList.add(new Car("Volksvagen","Golf","black"));
-        carList.add(new Car("Ford","Focus","silver"));
-        carList.add(new Car("Fiat","Punto","silver"));
-        carList.add(new Car("Volksvagen","Golf","black"));
-        carList.add(new Car("Ford","Focus","silver"));
-        carList.add(new Car("Fiat","Punto","silver"));
-        carList.add(new Car("Volksvagen","Golf","black"));
-        carList.add(new Car("Ford","Focus","silver"));
     }
 
     public List<Car> getAllCars() {
@@ -50,14 +30,11 @@ public class CarService {
     }
 
     public List<Car> getCarByColor(String color) {
-//        List<Car> cars = carList.stream().filter(car -> color.equalsIgnoreCase(car.getColor())).collect(Collectors.toList());
         List<Car> cars = carRepo.findCarsByColor(color);
         return cars;
     }
 
     public Car addCar(Car car) {
-        System.out.print("Car Added: ");
-        System.out.println(car.toString());
         return carRepo.save(car);
     }
 
@@ -75,6 +52,7 @@ public class CarService {
                     editedCar.setColor(value);
                     break;
             }
+            carRepo.save(editedCar);
         });
     }
 

@@ -53,15 +53,6 @@ public class CarsApi {
         return new ResponseEntity<>(carService.addCar(car),HttpStatus.OK) ;
     }
 
-//    @PutMapping
-//    public ResponseEntity<Boolean> editCar(@RequestBody Car newCar) {
-//        if(carService.modCar(newCar)) {
-//            carService.modCar(newCar);
-//            return new ResponseEntity<>(true, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
-//    }
-
     @PatchMapping("/{id}")
     public ResponseEntity editCar(@PathVariable long id,@RequestBody Map<String, String> changes) {
     carService.editCar(id, changes);

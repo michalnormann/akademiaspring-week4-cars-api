@@ -29,10 +29,9 @@ public class CarsApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarsApiApplication.class, args);
 
-        carRepo.save(new Car("Fiat","Punto","silver"));
-        carRepo.save(new Car("Volksvagen","Golf","black"));
-        carRepo.save(new Car("Ford","Focus","silver"));
-
+        carRepo.save(new Car("Audi", "Q7", "silver"));
+        carRepo.save(new Car("BMW", "i8", "silver"));
+        carRepo.save(new Car("Volvo", "V60", "silver"));
     }
 
     @Bean
